@@ -1,7 +1,11 @@
 package model;
 
+import java.util.Comparator;
+
 public class Vehicle {
     private String plate, brand, model, color;
+
+    public static final Comparator<Vehicle> compPlate = ( ((o1, o2) -> (o1.getPlate().compareTo(o2.getPlate()))) );
 
     public Vehicle() {
     }
