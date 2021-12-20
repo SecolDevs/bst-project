@@ -36,7 +36,6 @@ class Queue_Test {
         Assertions.assertEquals("rty123", enqueuedVehicle.getPlate());
     }
 
-
     @Test
     void removeQueue() {
         setup();

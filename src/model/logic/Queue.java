@@ -25,7 +25,7 @@ public class Queue<T> {
     /**
      * Adds an item to the queue
      *
-     * @param T data to add
+     * @param T data to be added
      * @return T
      */
     public T enqueue(T data) {
@@ -88,11 +88,10 @@ public class Queue<T> {
         return this.tail.getData();
     }
 
-
     /**
      * Returns a finded queue node
      *
-     * @param T data to find
+     * @param T data to be finded
      * @return QueueNode
      */
     public QueueNode<T> findNode(T data) {

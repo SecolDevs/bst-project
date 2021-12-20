@@ -11,15 +11,30 @@ public class BinaryTree<T> {
     private ArrayList<T> out;
     private int cont;
 
+    /**
+     * Constructor for BinaryTree
+     *
+     * @param comparator
+     */
     public BinaryTree(Comparator<T> comparator) {
         this.comparator = comparator;
         this.root = null;
     }
 
+    /**
+     * Returns if the tree is empty
+     *
+     * @return boolean
+     */
     public boolean isEmpty() {
         return root == null;
     }
 
+    /**
+     * Inserts a new node in the tree
+     *
+     * @param T data to be inserted
+     */
     public void addNode(T info) {
         TreeNode<T> node = new TreeNode<>(info);
         if (isEmpty()) {
@@ -39,6 +54,12 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Returns a finded tree node
+     *
+     * @param T data to be finded
+     * @return TreeNode
+     */
     public TreeNode<T> findNode(T info) {
         TreeNode<T> aux = root;
         while (aux != null) {
@@ -50,6 +71,11 @@ public class BinaryTree<T> {
         return null;
     }
 
+    /**
+     * Returns a list of the tree in preorder
+     *
+     * @return ArrayList
+     */
     public ArrayList<T> listPresort() {
         out = new ArrayList<>();
         presort(root);
@@ -57,6 +83,11 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * Returns a list of the tree in preorder
+     *
+     * @return ArrayList
+     */
     private void presort(TreeNode<T> root) {
         if (root != null) {
             out.add(root.getInfo());
@@ -65,13 +96,23 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Returns a list of the tree in inorder
+     *
+     * @return ArrayList
+     */
     public ArrayList<T> listInsort() {
         out = new ArrayList<>();
         insort(root);
-
         return out;
     }
 
+    /**
+     * Returns a list of the tree in inorder
+     *
+     * @param TreeNode root of the tree
+     * @return ArrayList
+     */
     private void insort(TreeNode<T> root) {
         if (root != null) {
             insort(root.getLeft());
@@ -80,6 +121,11 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Returns a list of the tree in amplitude
+     *
+     * @return ArrayList
+     */
     public ArrayList<T> listAmplitude() {
         out = new ArrayList<>();
         ArrayDeque<TreeNode> tail = new ArrayDeque<>();
@@ -94,14 +140,25 @@ public class BinaryTree<T> {
             }
             out.add(aux.getInfo());
         }
-
         return out;
     }
 
+    /**
+     * Returns if node is a leaf
+     *
+     * @param TreeNode node to be checked
+     * @return boolean
+     */
     public boolean isLeaf(TreeNode<T> node) {
         return node.getRight() == null && node.getLeft() == null;
     }
 
+    /**
+     * Returns the father of a node
+     *
+     * @param TreeNode node to be finded
+     * @return TreeNode
+     */
     public TreeNode<T> findFather(TreeNode<T> node) {
         if (node == root) {
             return null;
@@ -115,11 +172,22 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Returns the level of a node
+     *
+     * @param TreeNode node to be checked
+     * @return int
+     */
     public int levelNode(TreeNode<T> node) {
-
         return node == root ? 0 : levelNode(findFather(node)) + 1;
     }
 
+    /**
+     * Returns the height of a node
+     *
+     * @param TreeNode node to be checked
+     * @return int
+     */
     public int heigthNode(TreeNode<T> node) {
         cont = 0;
         heigth(node, 0);
@@ -127,6 +195,13 @@ public class BinaryTree<T> {
         return cont;
     }
 
+    /**
+     * Returns the height of a node
+     *
+     * @param TreeNode node to be checked
+     * @param int      counter
+     * @return int
+     */
     private void heigth(TreeNode<T> node, int i) {
         if (node != null) {
             heigth(node.getLeft(), i + 1);
@@ -135,10 +210,21 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Returns the height of the tree
+     *
+     * @return int
+     */
     public int heigthTree() {
         return heigthNode(root);
     }
 
+    /**
+     * Returns the grade of a node
+     *
+     * @param TreeNode node to be checked
+     * @return int
+     */
     public int getGradeNode(TreeNode<T> node) {
         if (node.getRight() != null && node.getLeft() != null)
             return 2;
@@ -148,6 +234,12 @@ public class BinaryTree<T> {
             return 0;
     }
 
+    /**
+     * Deletes a node
+     *
+     * @param TreeNode node to be deleted
+     * @return T
+     */
     public T deleteNode(TreeNode<T> node) {
         switch (getGradeNode(node)) {
             case 0:
@@ -160,6 +252,12 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Deletes a node with sons
+     *
+     * @param TreeNode node to be deleted
+     * @return T
+     */
     private T deleteWithSons(TreeNode<T> node) {
         T out = node.getInfo();
         TreeNode<T> sustitute = node.getRight();
@@ -186,6 +284,12 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * Deletes a node with son
+     *
+     * @param TreeNode node to be deleted
+     * @return T
+     */
     private T deleteWithSon(TreeNode<T> node) {
         T out = node.getInfo();
         if (node == root) {
@@ -202,6 +306,12 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * Deletes a leaf
+     *
+     * @param TreeNode node to be deleted
+     * @return T
+     */
     private T deleteLeaf(TreeNode<T> node) {
         T out = node.getInfo();
 
@@ -219,6 +329,11 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * Returns the weight of the tree
+     *
+     * @return TreeNode
+     */
     public int weightTree() {
         return listInsort().size();
     }
