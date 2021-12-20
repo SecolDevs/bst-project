@@ -1,4 +1,4 @@
-# bst-project
+# Proyecto
 
 [Accede a la documentacion](https://bst-docs.netlify.app/)
 
@@ -6,4 +6,5 @@
 - Yordi Colon
 
 
+# Diagrama de clases
 ![Diagrama de clases](https://resassets.moqups.com/j/9/Y/j9Yd9ODAWz/images/YnDbbiT5fx-md.png 'Diagrama de clases')
